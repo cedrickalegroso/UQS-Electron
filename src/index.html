@@ -3,11 +3,29 @@
 <head>
   <meta charset="utf-8">
   <title>UqsElectron</title>
-  <base href="/">
+  <base href="./">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    // 1. Require the installed module
+    const customTitlebar = require('custom-electron-titlebar');
+
+    // 2. Create the custom titlebar with your own settings
+    //    To make it work, we just need to provide the backgroundColor property
+    //    Other properties are optional.
+    let MyTitleBar = new customTitlebar.Titlebar({
+        backgroundColor: customTitlebar.Color.fromHex('#03a9f4'),
+        shadow: true,
+        icon: 'assets/uqslogo.png'
+    });
+    
+    // 3. Update Titlebar text
+    MyTitleBar.updateTitle('UQS');
+</script>
 </body>
 </html>

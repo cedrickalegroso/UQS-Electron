@@ -1,0 +1,80 @@
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+
+    mat-accordion {
+        mat-expansion-panel {
+            border-radius: 0px !important;
+            background-color: #2e46cf;
+            color: white;
+            mat-expansion-panel-header {
+                mat-panel-title {
+                    color: white;
+                }
+            }
+        }
+    }
+    mat-sidenav {
+        width: 200px;
+        background-color: #3336ca;
+        mat-list {
+            mat-list-item {
+                color: white;
+            }
+        }
+
+        .bottom-ver {
+            position: absolute;
+            bottom: 10px;
+
+            mat-list-item {
+                font-size: 0.8rem;
+            }
+        }
+    }
+    mat-sidenav-content{
+        .jumbotron{
+            border-radius: 0px !important;
+            background: rgb(54,46,199);
+            background: linear-gradient(90deg, rgba(54,46,199,1) 0%, rgba(0,212,255,1) 100%);
+        }
+        .test{
+            background-color: white;
+            margin-top: -100px;
+            height: 80vh;
+            border-radius: 10px;
+         
+
+            mat-card.carder{
+                background: white;
+                padding: 20;
+                color: #3336CA;
+                width: 500px;
+                
+                mat-card-conten{
+                    text-align: center;
+                }
+            }
+              
+        }
+    }
+
+    
+}
+
+.example-full-width {
+    width: 100%;
+  }
+  
+  
+   .loadStyle {
+     margin-top: 40vh;
+     mat-progress-spinner{
+      margin-left: auto;
+      margin-right: auto;
+     } 
+   }

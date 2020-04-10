@@ -1,0 +1,54 @@
+
+
+.authwrapper{
+    height: 100vh;
+    background: rgb(54,46,199);
+    background: linear-gradient(90deg, rgba(54,46,199,1) 0%, rgba(0,212,255,1) 100%);
+
+    #authText{
+ 
+        padding: 100px 1%;
+
+        img {
+            width: 64px;
+        }
+
+        #authHead {
+            font-size: 2.5rem;
+        }
+
+    }
+
+    .registerWrap{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .login-or {
+        position: relative;
+        color: #aaa;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .span-or {
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: -2px;
+            margin-left: -25px;
+            background-color: #fff;
+            width: 50px;
+            text-align: center;
+            }
+
+            .hr-or {
+                height: 1px;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+                }
+
+        }
+    
+}

@@ -1,0 +1,164 @@
+<div *ngIf="universities && governmnents && banks && user$.user$ | async as user;  else noUser">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{user.displayName}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item (click)="user$.signOut()">Log out</mat-list-item>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-list>
+        <mat-list-item><a class="tabActive1" (click)="showTickets()"> Tickets </a> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><a class="tabActive2" (click)="showService()"> Services </a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="openAccountDialog()">Account</mat-list-item>
+      </mat-list>
+
+      <mat-list class="bottom-ver">
+        <mat-list-item>UQS BETA 0.0.2</mat-list-item>
+      </mat-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      <main role="main">
+        <!-- Active Tickets -->
+        <div id="activeTickets" [hidden]="isHiddenTickets">
+          <div class="jumbotron">
+            <div class="container">
+              <h1 class="display-4 text-white">Active Tickets</h1>
+            </div>
+          </div>
+          <div class="container test">
+
+            <div class="container p-3">
+              <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+                <ng-container *ngFor="let ticket of tix$.tickets$  | async">
+
+                  <div class="card text-center" fxFlex="0 1 calc(33.3% - 32px)" style="width: 18rem;">
+                    <div class="card-body">
+  
+                      <h5 class="card-title text-center" style="color:#3336CA">{{ ticket.ticketNo }}</h5>
+
+                      <a  class="btn btn-danger text-white" (click)="cancelTicket(ticket)">Cancel</a>
+                    </div>
+                  </div>
+
+
+                </ng-container>
+              </div>
+            </div>
+
+
+
+            <ng-template #notix>
+              <p> no tix </p>
+            </ng-template>
+
+          </div>
+        </div>
+
+        <!-- Active Tickets -->
+        <div id="services" [hidden]="isHiddenServices">
+          <div class="jumbotron">
+            <div class="container">
+              <h1 class="display-4 text-white">Services</h1>
+            </div>
+          </div>
+          <div class="container test">
+            <mat-tab-group>
+              <mat-tab label="Univeristies">
+
+                <div *ngIf="universities != null; else load">
+
+                  <div class="container p-3">
+                    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+                      <ng-container *ngFor="let university of universities | async">
+                        <div class="card text-center" fxFlex="0 1 calc(33.3% - 32px)" style="width: 18rem;">
+                          <div class="card-body">
+                            <img style="width: 48px;" [src]="university.photoUrl" alt="">
+                            <p class="card-title text-center" style="color:#3336CA">{{ university.displayName }}</p>
+                            <a  class="btn btn-primary  text-white" (click)="createTicketUniv(university)">Create Ticket</a>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #load>
+                  <p>loading services</p>
+                </ng-template>
+
+              </mat-tab>
+              <mat-tab label="Governments">
+                <div *ngIf="governmnents; else load">
+                  <div class="container p-3">
+                    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+                      <ng-container *ngFor="let governmnent of governmnents | async">
+                        <div class="card text-center" fxFlex="0 1 calc(33.3% - 32px)" style="width: 18rem;">
+                          <div class="card-body">
+                            <img style="width: 48px;" [src]="governmnent.photoUrl" alt="">
+                            <p class="card-title text-center" style="color:#3336CA">{{ governmnent.displayName }}</p>
+                            <a  class="btn btn-primary  text-white" (click)="createTicketGov(governmnent)">Create Ticket</a>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #load>
+                  <p>loading services</p>
+                </ng-template>
+
+              </mat-tab>
+              <mat-tab label="Banks">
+                <div *ngIf="banks != null; else load">
+                  <div class="container p-3">
+                    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+                      <ng-container *ngFor="let bank of banks | async">
+                        <div class="card text-center" fxFlex="0 1 calc(33.3% - 32px)" style="width: 18rem;">
+                          <div class="card-body">
+                            <img style="width: 48px;" [src]="bank.photoUrl" alt="">
+                            <p class="card-title text-center" style="color:#3336CA">{{ bank.displayName }}</p>
+                            <a  class="btn btn-primary text-white" (click)="createTicketBank(bank)">Create Ticket</a>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #load>
+                  <p>loading services</p>
+                </ng-template>
+
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+      </main>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<ng-template #noUser>
+  <div class="container-fluid">
+    <div class="row h-100">
+      <div class="col-sm-12 my-auto">
+        <div class="container">
+          <mat-progress-spinner class="example-margin " [mode]="mode">
+          </mat-progress-spinner>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</ng-template>

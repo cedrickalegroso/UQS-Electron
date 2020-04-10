@@ -1,0 +1,79 @@
+<style>
+
+    .example-full-width{
+        width: 100%;
+    }
+    
+    .img-profileDialog{
+        width: 74px;
+    }
+    
+    .profileDialogWrapper{
+        text-align: center;
+    }
+    
+    
+    
+    
+    </style>
+    
+    
+    <div *ngIf="user$.user$ | async as user; else load " class="profileDialogWrapper" >
+        <p> Account Settings </p>
+    
+     <p> </p>
+    
+    <!--  <img class="img-profileDialog rounded-circle"   [src]="user.photoUrl">  
+       <span>
+        <button mat-raised-button (click)="uploadPhotoDialog()" color="accent">Upload Photo</button>
+       </span> -->
+       
+        <br />
+    
+        <br />
+    
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Personal data
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="dataUpdate" class="loginForm" >
+               
+                <mat-form-field class="example-full-width">
+                    <mat-label>Display Name</mat-label>
+                    <input matInput formControlName="displayName" type="text" placeholder="{{user.displayName}}" >
+                  </mat-form-field>
+    
+       
+          
+          
+                  <mat-form-field class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="email" type="email" placeholder="{{user.email}}" >
+                    </mat-form-field>
+          
+          
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Phone Number</mat-label>
+                      <input matInput formControlName="phoneNumber" type="text"  placeholder="{{user.phoneNumber}}" >
+                    </mat-form-field>
+                    <button mat-raised-button (click)="updateData(dataUpdate.value)" color="accent">Submit</button>
+                </form>
+            </mat-expansion-panel>      
+        </mat-accordion>
+    
+            <br/>
+    
+         
+        
+      
+    
+    
+    
+    </div>
+    
+    <ng-template #load>
+        <p> ERROR </p>
+    </ng-template>
